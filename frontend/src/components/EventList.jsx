@@ -10,10 +10,12 @@ const EventList = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get('/api/products');
-        console.log("Response: ", response.data);
-        const eventsArray = Array.isArray(response.data) ? response.data : response.data.products || [];
+        console.log("Response: ", response);
+        console.log("Response data: ", response.data);
+        console.log("Response data-data: ", response.data.data);
+        const eventsArray = Array.isArray(response.data.data) ? response.data.data : response.data.data.products || [];
         console.log("Array ", eventsArray);
-        console.log("Is Array? ", Array.isArray(response.data));
+        console.log("Is Array? ", Array.isArray(response.data.data));
         setEvents(eventsArray);
       } catch (error) {
         console.error('Error fetching events:', error);
@@ -25,19 +27,24 @@ const EventList = () => {
 
   return (
     <div>
-      <h1>Events</h1>
+
+      <div className="event-container">
+        <h1>Events</h1>
+        {events.map((event) => (
+          <div key={event._id} className="event-box">
+            <div className="event-name">{event.name}</div>
+            <div className="event-time">Time: {new Date(event.time).toLocaleString()}</div>
+            <div className="event-duration">Duration: {event.duration} minutes</div>
+            {event.participants && (
+              <div className="event-participants">
+                Participants: {event.participants.length}
+              </div>
+            )}
+          </div>
+        ))}
+        <br></br>
+      </div>
       <Link to="/create">Create New Event</Link>
-      <ul>
-        {events.length > 0 ? (
-          events.map((event) => (
-            <li key={event._id}>
-              {event.name} - {new Date(event.time).toLocaleString()}
-            </li>
-          ))
-        ) : (
-          <p>No events available.</p>
-        )}
-      </ul>
     </div>
   );
 };

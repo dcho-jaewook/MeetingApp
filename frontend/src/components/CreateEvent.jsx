@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../styles/CreateEvent.css';
 
 const CreateEvent = () => {
@@ -52,6 +53,7 @@ const CreateEvent = () => {
         </div>
         <button type="submit">Create Event</button>
       </form>
+      <Link to="/" class="main_page">Main Page</Link>
     </div>
   );
 };

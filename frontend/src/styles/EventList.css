@@ -1,27 +1,55 @@
-.event-list {
-    list-style-type: none;
-    padding: 0;
+.event-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 16px;
+    margin: 20px;
   }
   
-  .event-item {
-    background-color: #e9ecef;
-    margin: 10px 0;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  .event-box {
+    background-color: #f9f9f9;
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px; /* Border radius for rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    transition: transform 0.2s ease-in-out;
   }
   
-  .event-item:hover {
-    background-color: #dee2e6;
+  .event-box:hover {
+    transform: scale(1.02); /* Slight hover effect */
   }
   
   .event-name {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #495057;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
   }
   
   .event-time {
-    font-size: 0.9em;
-    color: #868e96;
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .event-duration {
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+  .event-participants {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #666;
+  }
+  
+  /* Responsive behavior for smaller screens */
+  @media (max-width: 1024px) {
+    .event-container {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .event-container {
+      grid-template-columns: 1fr; /* 1 column on small screens */
+    }
   }
